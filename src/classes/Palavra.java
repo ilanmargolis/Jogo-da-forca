@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -24,9 +25,16 @@ public class Palavra {
                              "CARDUME", "MARINHEIRO", "BANANA", "ROTEIRISTA",
                              "GARRAFA", "VIADUTO"};
                
-        Random rnd = new Random(System.currentTimeMillis()); 
+        Random rnd = new Random(); 
+        
+        // quero garantir um semente realmente aleatória evitando mesma sequencia inicial
+        Calendar data = Calendar.getInstance();
+        int hora = data.get(Calendar.HOUR_OF_DAY); 
+        int min = data.get(Calendar.MINUTE);
+        int seg = data.get(Calendar.SECOND);
+        
+        rnd.setSeed(hora+min+seg);
             
         return palavras[rnd.nextInt(palavras.length - 1)];
-    }
-    
+    }   
 }
