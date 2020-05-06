@@ -39,11 +39,9 @@ public class TelaPrincipal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
                
-        limpaTela();
+        inicializaJogo();
         
         configuraBotoes();
-        
-        criaEditsLetras();
     }
 
     /**
@@ -55,8 +53,10 @@ public class TelaPrincipal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         pnlForca = new javax.swing.JPanel();
         imgForca = new javax.swing.JLabel();
+        pnlPalavra = new javax.swing.JPanel();
         pnlTeclado = new javax.swing.JLayeredPane();
         btnI = new javax.swing.JButton();
         btnE = new javax.swing.JButton();
@@ -84,7 +84,18 @@ public class TelaPrincipal extends javax.swing.JDialog {
         btnX = new javax.swing.JButton();
         btnC = new javax.swing.JButton();
         btnV = new javax.swing.JButton();
-        pnlPalavra = new javax.swing.JPanel();
+        btnComecar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Jogo da Forca - By Ilan Margolis ©2020");
@@ -108,10 +119,23 @@ public class TelaPrincipal extends javax.swing.JDialog {
         );
         pnlForcaLayout.setVerticalGroup(
             pnlForcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlForcaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlForcaLayout.createSequentialGroup()
                 .addComponent(imgForca, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        pnlPalavra.setEnabled(false);
+        pnlPalavra.setFocusable(false);
+
+        javax.swing.GroupLayout pnlPalavraLayout = new javax.swing.GroupLayout(pnlPalavra);
+        pnlPalavra.setLayout(pnlPalavraLayout);
+        pnlPalavraLayout.setHorizontalGroup(
+            pnlPalavraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlPalavraLayout.setVerticalGroup(
+            pnlPalavraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
         pnlTeclado.setPreferredSize(new java.awt.Dimension(366, 130));
@@ -201,68 +225,67 @@ public class TelaPrincipal extends javax.swing.JDialog {
         pnlTecladoLayout.setHorizontalGroup(
             pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTecladoLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(btnQ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTecladoLayout.createSequentialGroup()
-                        .addComponent(btnW)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnR)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnY)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnU)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnI)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnO)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnP))
-                    .addGroup(pnlTecladoLayout.createSequentialGroup()
-                        .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnZ))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlTecladoLayout.createSequentialGroup()
-                                .addComponent(btnS)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnD)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnG)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnH)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnJ)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnK)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnL))
-                            .addGroup(pnlTecladoLayout.createSequentialGroup()
-                                .addComponent(btnX)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnC)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnV)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnM)))))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(btnW)
+                .addGap(6, 6, 6)
+                .addComponent(btnE)
+                .addGap(6, 6, 6)
+                .addComponent(btnR)
+                .addGap(6, 6, 6)
+                .addComponent(btnT)
+                .addGap(6, 6, 6)
+                .addComponent(btnY)
+                .addGap(6, 6, 6)
+                .addComponent(btnU)
+                .addGap(6, 6, 6)
+                .addComponent(btnI)
+                .addGap(6, 6, 6)
+                .addComponent(btnO)
+                .addGap(6, 6, 6)
+                .addComponent(btnP))
+            .addGroup(pnlTecladoLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(btnA)
+                .addGap(6, 6, 6)
+                .addComponent(btnS)
+                .addGap(6, 6, 6)
+                .addComponent(btnD)
+                .addGap(6, 6, 6)
+                .addComponent(btnF)
+                .addGap(6, 6, 6)
+                .addComponent(btnG)
+                .addGap(6, 6, 6)
+                .addComponent(btnH)
+                .addGap(6, 6, 6)
+                .addComponent(btnJ)
+                .addGap(6, 6, 6)
+                .addComponent(btnK)
+                .addGap(6, 6, 6)
+                .addComponent(btnL))
+            .addGroup(pnlTecladoLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(btnZ)
+                .addGap(8, 8, 8)
+                .addComponent(btnX)
+                .addGap(6, 6, 6)
+                .addComponent(btnC)
+                .addGap(6, 6, 6)
+                .addComponent(btnV)
+                .addGap(6, 6, 6)
+                .addComponent(btnB)
+                .addGap(6, 6, 6)
+                .addComponent(btnN)
+                .addGap(6, 6, 6)
+                .addComponent(btnM))
         );
         pnlTecladoLayout.setVerticalGroup(
             pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTecladoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnQ)
+                    .addComponent(btnW)
                     .addComponent(btnE)
                     .addComponent(btnR)
                     .addComponent(btnT)
@@ -270,12 +293,9 @@ public class TelaPrincipal extends javax.swing.JDialog {
                     .addComponent(btnU)
                     .addComponent(btnI)
                     .addComponent(btnO)
-                    .addComponent(btnP)
-                    .addComponent(btnW)
-                    .addComponent(btnQ))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnL)
+                    .addComponent(btnP))
+                .addGap(6, 6, 6)
+                .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnA)
                     .addComponent(btnS)
                     .addComponent(btnD)
@@ -283,63 +303,66 @@ public class TelaPrincipal extends javax.swing.JDialog {
                     .addComponent(btnG)
                     .addComponent(btnH)
                     .addComponent(btnJ)
-                    .addComponent(btnK))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnK)
+                    .addComponent(btnL))
+                .addGap(6, 6, 6)
                 .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnZ)
-                    .addGroup(pnlTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnX)
-                        .addComponent(btnC)
-                        .addComponent(btnV)
-                        .addComponent(btnB)
-                        .addComponent(btnN)
-                        .addComponent(btnM)))
-                .addGap(99, 99, 99))
+                    .addComponent(btnX)
+                    .addComponent(btnC)
+                    .addComponent(btnV)
+                    .addComponent(btnB)
+                    .addComponent(btnN)
+                    .addComponent(btnM)))
         );
 
-        pnlPalavra.setEnabled(false);
-        pnlPalavra.setFocusable(false);
-
-        javax.swing.GroupLayout pnlPalavraLayout = new javax.swing.GroupLayout(pnlPalavra);
-        pnlPalavra.setLayout(pnlPalavraLayout);
-        pnlPalavraLayout.setHorizontalGroup(
-            pnlPalavraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlPalavraLayout.setVerticalGroup(
-            pnlPalavraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
-        );
+        btnComecar.setText("INICIAR O JOGO");
+        btnComecar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComecarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlPalavra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlTeclado, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                    .addComponent(pnlTeclado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pnlForca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addContainerGap()
+                        .addComponent(pnlPalavra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(pnlForca, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 60, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(btnComecar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlForca, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlPalavra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlForca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, Short.MAX_VALUE)
-                .addGap(24, 24, 24))
+                .addComponent(pnlPalavra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnComecar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnComecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComecarActionPerformed
+        // TODO add your handling code here:
+        inicializaJogo();
+    }//GEN-LAST:event_btnComecarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -378,9 +401,9 @@ public class TelaPrincipal extends javax.swing.JDialog {
                         System.exit(0);
                     }
                 });
-                dialog.setLocationRelativeTo(null);
-                dialog.setSize(430, 600);
-                dialog.setVisible(true);                
+                dialog.setLocationRelativeTo(null); // centraliza formulário na tela
+                dialog.setSize(430, 600); // fixa o tamanho do formulário
+                dialog.setVisible(true);  // torna o fomulário visível              
             }
         });
     }
@@ -389,6 +412,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
     private javax.swing.JButton btnA;
     private javax.swing.JButton btnB;
     private javax.swing.JButton btnC;
+    private javax.swing.JButton btnComecar;
     private javax.swing.JButton btnD;
     private javax.swing.JButton btnE;
     private javax.swing.JButton btnF;
@@ -413,6 +437,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
     private javax.swing.JButton btnY;
     private javax.swing.JButton btnZ;
     private javax.swing.JLabel imgForca;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlForca;
     private javax.swing.JPanel pnlPalavra;
     private javax.swing.JLayeredPane pnlTeclado;
@@ -420,6 +445,11 @@ public class TelaPrincipal extends javax.swing.JDialog {
 
     
     // FUNÇÕES AUXILIARES        
+    private void carregaForca(int tipo) {
+        imgForca.setIcon(new javax.swing.ImageIcon(getClass().
+                         getResource("/imagens/forca" + tipo + ".png")));
+    }
+    
     private boolean componenteEdit(int op, String letra) {
         boolean flagUsouLetra = false;
         
@@ -461,10 +491,9 @@ public class TelaPrincipal extends javax.swing.JDialog {
         return flagUsouLetra;
     }
 
-    private void configuraBotoes() {
+    private void configuraBotoes() { // escutador das teclas alfabéticas
         // VERIFICA se a letra já foi utilizada
-        ActionListener al;
-        al = new ActionListener() {
+        ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String letra = e.getActionCommand();
                 int status = ST_JOGANDO;
@@ -480,40 +509,42 @@ public class TelaPrincipal extends javax.swing.JDialog {
                             
                             contErros++;
                             
-                            // carrega a imagem do enforcamento    
-                            imgForca.setIcon(new javax.swing.ImageIcon(getClass().
-                                    getResource("/imagens/forca" + contErros + ".png")));
+                            carregaForca(contErros); // carrega a imagem do enforcamento 
                         }
                     }
 
                     // VITÓRIA / DERROTA
                     if (contAcertos == pnlPalavra.getComponents().length) { // vitória
+                        if (contErros > 0) { // liberta o boneco se tiver iniciado o enforcamento
+                            carregaForca(9);  
+                        }
+                        
                         status = ST_VITORIA;
                     } else if (contErros == 8) { // derrota
-                        componenteEdit(EDT_MOSTRA, null);
+                        componenteEdit(EDT_MOSTRA, null);  // mostra as letras que faltam na palavra
                         
                         status = ST_DERROTA;
                     }
                 }
                 
                 if (status != ST_JOGANDO) {
+                    btnComecar.setEnabled(true);
                     /*  if (status == ST_VITORIA) {
                             JOptionPane.showMessageDialog(null, "PARABÉNS, VOCÊ VENCEU!");
                         } else {
                             JOptionPane.showMessageDialog(null, "VOCÊ PERDEU!");
                         }
-                    */
+                    
                     
                     int opcao = JOptionPane.showConfirmDialog(null, "Deseja jogar novamente?",
                             "Selecione uma opção", JOptionPane.YES_NO_OPTION);
                     
-                    limpaTela();
-                    
                     if (opcao == JOptionPane.YES_OPTION) { // joga novamente
-                        criaEditsLetras();
+                        inicializaJogo();
                     } else { // sai do programa
                         System.exit(0);
                     }
+                    */
                 }
             }
         };
@@ -526,9 +557,11 @@ public class TelaPrincipal extends javax.swing.JDialog {
         }
     }       
     
-    private void criaEditsLetras() {
+    private void criaEditsLetras() { // sorteia a palavra e prepara edits para as letras
         Palavra palavra = new Palavra();
         String secreta = palavra.sortear();
+        
+        pnlPalavra.repaint();
         
         // CRIA os edits das letras da palavra secreta
         for (int i = 0; i < secreta.length(); i++) {
@@ -546,7 +579,23 @@ public class TelaPrincipal extends javax.swing.JDialog {
         }
     }
 
-    private boolean isLetraUsada(String letra) {
+    private void inicializaJogo() { // inicializa a interface do jogo
+        contAcertos = contErros = 0;
+         
+        componenteEdit(EDT_LIMPA, null);  
+        
+        pintaLetraTeclado("", Color.LIGHT_GRAY);
+        
+        carregaForca(0);
+        
+        criaEditsLetras();
+        
+        btnComecar.setEnabled(false);
+        
+        pnlTeclado.requestFocus();
+    }
+
+    private boolean isLetraUsada(String letra) { // verifica se a letra já foi teclada
         boolean retorno = false;
         
         for (Component b : pnlTeclado.getComponents()) {
@@ -562,22 +611,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
         return retorno;
     }
  
-    private void limpaTela() {
-        contAcertos = contErros = 0;
-         
-        componenteEdit(EDT_LIMPA, null); 
-       
-        pnlPalavra.repaint();
-                   
-        pintaLetraTeclado("", Color.LIGHT_GRAY);
-        
-        imgForca.setIcon(new javax.swing.ImageIcon(getClass().
-                                  getResource("/imagens/forca0.png")));
-        
-        pnlTeclado.requestFocus();
-    }
-
-    private void pintaLetraTeclado(String letra, Color cor) {
+    private void pintaLetraTeclado(String letra, Color cor) { // responsável por pintar as teclas
         for (Component b : pnlTeclado.getComponents()) {
             if (b instanceof JButton) {
                 if ((letra.equals("")) || (((JButton) b).getText().equals(letra))) {
@@ -587,6 +621,5 @@ public class TelaPrincipal extends javax.swing.JDialog {
                 }
             }
         }
-    }
-    
+    }   
 }

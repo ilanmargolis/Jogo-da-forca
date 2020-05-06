@@ -23,11 +23,17 @@ public class Palavra {
                              "LEOPARDO", "FARINHA", "MONTANHA", "ILUMINADO",
                              "BANHISTA", "BOMBORDO", "JABOTICABA", "RUMINANTE",
                              "CARDUME", "MARINHEIRO", "BANANA", "ROTEIRISTA",
-                             "GARRAFA", "VIADUTO"};
+                             "GARRAFA", "VIADUTO", "MOTORIZADO", "URUCA",
+                             "QUIMERA", "SOBREMESA", "LANCHONETE", "CARAMELO",
+                             "SEGREDO", "PROGRAMADOR", "FRAMBOESA", "INDEPENDENTE",
+                             "GAGUEIRA", "SUPERSONICO", "PERNAMBUCO", "PETECA",
+                             "CARROCEL", "ESCRAVO", "NATUREZA", "DEPUTADO",
+                             "BIJOUTERIA", "TELEVISOR", "PASSARINHO",
+                             "NADADORA", "GALINHEIRO"};
                
         Random rnd = new Random(); 
         
-        // quero garantir um semente realmente aleatória evitando mesma sequencia inicial
+        // quero garantir um semente realmente aleatória evitando mesma sequência inicial
         Calendar data = Calendar.getInstance();
         int hora = data.get(Calendar.HOUR_OF_DAY); 
         int min = data.get(Calendar.MINUTE);
