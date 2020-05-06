@@ -39,8 +39,6 @@ public class TelaPrincipal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
                
-        inicializaJogo();
-        
         configuraBotoes();
     }
 
@@ -84,7 +82,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
         btnX = new javax.swing.JButton();
         btnC = new javax.swing.JButton();
         btnV = new javax.swing.JButton();
-        btnComecar = new javax.swing.JButton();
+        btnInicar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,8 +112,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
             pnlForcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlForcaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imgForca, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(imgForca, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
         );
         pnlForcaLayout.setVerticalGroup(
             pnlForcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,10 +313,10 @@ public class TelaPrincipal extends javax.swing.JDialog {
                     .addComponent(btnM)))
         );
 
-        btnComecar.setText("INICIAR O JOGO");
-        btnComecar.addActionListener(new java.awt.event.ActionListener() {
+        btnInicar.setText("INICIAR O JOGO");
+        btnInicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComecarActionPerformed(evt);
+                btnInicarActionPerformed(evt);
             }
         });
 
@@ -329,19 +326,19 @@ public class TelaPrincipal extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTeclado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                    .addComponent(pnlTeclado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnlPalavra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(pnlForca, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 60, Short.MAX_VALUE)))
+                        .addComponent(pnlPalavra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(132, 132, 132)
-                .addComponent(btnComecar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(139, 139, 139))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(pnlForca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,17 +349,17 @@ public class TelaPrincipal extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnComecar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnComecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComecarActionPerformed
+    private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
         // TODO add your handling code here:
         inicializaJogo();
-    }//GEN-LAST:event_btnComecarActionPerformed
+    }//GEN-LAST:event_btnInicarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -402,7 +399,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
                     }
                 });
                 dialog.setLocationRelativeTo(null); // centraliza formulário na tela
-                dialog.setSize(430, 600); // fixa o tamanho do formulário
+                dialog.setSize(440, 600); // fixa o tamanho do formulário
                 dialog.setVisible(true);  // torna o fomulário visível              
             }
         });
@@ -412,13 +409,13 @@ public class TelaPrincipal extends javax.swing.JDialog {
     private javax.swing.JButton btnA;
     private javax.swing.JButton btnB;
     private javax.swing.JButton btnC;
-    private javax.swing.JButton btnComecar;
     private javax.swing.JButton btnD;
     private javax.swing.JButton btnE;
     private javax.swing.JButton btnF;
     private javax.swing.JButton btnG;
     private javax.swing.JButton btnH;
     private javax.swing.JButton btnI;
+    private javax.swing.JButton btnInicar;
     private javax.swing.JButton btnJ;
     private javax.swing.JButton btnK;
     private javax.swing.JButton btnL;
@@ -445,7 +442,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
 
     
     // FUNÇÕES AUXILIARES        
-    private void carregaForca(int tipo) {
+    private void carregaImagemForca(int tipo) {
         imgForca.setIcon(new javax.swing.ImageIcon(getClass().
                          getResource("/imagens/forca" + tipo + ".png")));
     }
@@ -498,7 +495,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
                 String letra = e.getActionCommand();
                 int status = ST_JOGANDO;
                 
-                if (pnlPalavra.getComponents().length > 0) {
+                if (pnlPalavra.getComponents().length > 0) { // só ativa teclado caso a palavra tenha sido sorteada
                     if (!isLetraUsada(letra)) {
                         boolean flagAcertouLetra = false;
                         
@@ -509,14 +506,14 @@ public class TelaPrincipal extends javax.swing.JDialog {
                             
                             contErros++;
                             
-                            carregaForca(contErros); // carrega a imagem do enforcamento 
+                            carregaImagemForca(contErros); // carrega a imagem do enforcamento 
                         }
                     }
 
                     // VITÓRIA / DERROTA
                     if (contAcertos == pnlPalavra.getComponents().length) { // vitória
                         if (contErros > 0) { // liberta o boneco se tiver iniciado o enforcamento
-                            carregaForca(9);  
+                            carregaImagemForca(9);  
                         }
                         
                         status = ST_VITORIA;
@@ -528,23 +525,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
                 }
                 
                 if (status != ST_JOGANDO) {
-                    btnComecar.setEnabled(true);
-                    /*  if (status == ST_VITORIA) {
-                            JOptionPane.showMessageDialog(null, "PARABÉNS, VOCÊ VENCEU!");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "VOCÊ PERDEU!");
-                        }
-                    
-                    
-                    int opcao = JOptionPane.showConfirmDialog(null, "Deseja jogar novamente?",
-                            "Selecione uma opção", JOptionPane.YES_NO_OPTION);
-                    
-                    if (opcao == JOptionPane.YES_OPTION) { // joga novamente
-                        inicializaJogo();
-                    } else { // sai do programa
-                        System.exit(0);
-                    }
-                    */
+                    btnInicar.setEnabled(true);
                 }
             }
         };
@@ -568,8 +549,8 @@ public class TelaPrincipal extends javax.swing.JDialog {
             String nome = "Letra" + Integer.toString(i);
             JTextField letra = new JTextField(nome);
             letra.setText(secreta.substring(i, i + 1));
-            letra.setBounds(35 * i + 5, 5, 35, 40);
-            letra.setFont(new Font("dialog", Font.PLAIN, 16));
+            letra.setBounds(34 * i + 5, 5, 34, 34);
+            letra.setFont(new Font("dialog", Font.BOLD, 17));
             letra.setHorizontalAlignment(letra.CENTER);
             letra.setForeground(Color.white); // esconde a letra
             
@@ -586,11 +567,11 @@ public class TelaPrincipal extends javax.swing.JDialog {
         
         pintaLetraTeclado("", Color.LIGHT_GRAY);
         
-        carregaForca(0);
+        carregaImagemForca(0);
         
         criaEditsLetras();
         
-        btnComecar.setEnabled(false);
+        btnInicar.setEnabled(false);
         
         pnlTeclado.requestFocus();
     }

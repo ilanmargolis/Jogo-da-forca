@@ -15,7 +15,7 @@ public class Palavra {
         
         String palavras[] = {"CASTELO", "PEIXE", "MONSTRO", "CACHORRO", "PISCINA",
                              "AMBULANCIA", "DINOSSAURO", "JOGADOR", "TESOURO",
-                             "ELEFANTE", "HOSPITAL", "PLANETA", "CANECA",
+                             "ELEFANTE", "HOSPITAL", "PLANETA", "CANETA",
                              "ORANGOTANGO", "CONFEITEIRO", "RELOGIO", "ESCOVA",
                              "ARMADILHA", "REMEDIO", "CHINELO", "ALFAIATE",
                              "LARANJEIRA", "COTIDIANO", "TELEFONE", "EQUATORIAL",
@@ -23,13 +23,16 @@ public class Palavra {
                              "LEOPARDO", "FARINHA", "MONTANHA", "ILUMINADO",
                              "BANHISTA", "BOMBORDO", "JABOTICABA", "RUMINANTE",
                              "CARDUME", "MARINHEIRO", "BANANA", "ROTEIRISTA",
-                             "GARRAFA", "VIADUTO", "MOTORIZADO", "URUCA",
+                             "GARRAFA", "VIADUTO", "MOTORIZADO", "URTIGA",
                              "QUIMERA", "SOBREMESA", "LANCHONETE", "CARAMELO",
                              "SEGREDO", "PROGRAMADOR", "FRAMBOESA", "INDEPENDENTE",
                              "GAGUEIRA", "SUPERSONICO", "PERNAMBUCO", "PETECA",
                              "CARROCEL", "ESCRAVO", "NATUREZA", "DEPUTADO",
-                             "BIJOUTERIA", "TELEVISOR", "PASSARINHO",
-                             "NADADORA", "GALINHEIRO"};
+                             "BIJOUTERIA", "TELEVISOR", "PASSARINHO", "FAMINTO",
+                             "NADADORA", "GALINHEIRO", "BOLOTA", "CARRETILHA",
+                             "MINHOCA", "PATINETE", "CASSINO", "EXPLODIR",
+                             "PERALTA", "DEMOLIDOR", "RICOCHETE", "TARTARUGA",
+                             "REFUGIADO", "LAGARTIXA", "HELICOPTERO"};
                
         Random rnd = new Random(); 
         
