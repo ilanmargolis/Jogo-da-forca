@@ -87,7 +87,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
         pnlPalavra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Jogo da Forca - By Ilan Margolis");
+        setTitle("Jogo da Forca - By Ilan Margolis ©2020");
         setResizable(false);
 
         pnlForca.setVerifyInputWhenFocusTarget(false);
