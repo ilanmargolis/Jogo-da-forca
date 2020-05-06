@@ -39,7 +39,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
                
-        configuraBotoes();
+        configuraBotoes(); 
     }
 
     /**
