@@ -101,7 +101,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
 
         pnlForca.setVerifyInputWhenFocusTarget(false);
 
-        imgForca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/forca.png"))); // NOI18N
+        imgForca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/forca0.png"))); // NOI18N
         imgForca.setMaximumSize(new java.awt.Dimension(68, 73));
         imgForca.setMinimumSize(new java.awt.Dimension(68, 73));
         imgForca.setPreferredSize(new java.awt.Dimension(68, 73));
