@@ -15,7 +15,7 @@ public class Palavra {
         
         String palavras[] = {"CASTELO", "PEIXE", "MONSTRO", "CACHORRO", "PISCINA",
                              "AMBULANCIA", "DINOSSAURO", "JOGADOR", "TESOURO",
-                             "ELEFANTE", "HOSPITAL", "PLANETA", "CANETA",
+                             "ELEFANTE", "HOSPITAL", "PLANETA", "CANETA", 
                              "ORANGOTANGO", "CONFEITEIRO", "RELOGIO", "ESCOVA",
                              "ARMADILHA", "REMEDIO", "CHINELO", "ALFAIATE",
                              "LARANJEIRA", "COTIDIANO", "TELEFONE", "EQUATORIAL",

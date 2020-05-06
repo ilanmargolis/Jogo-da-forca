@@ -542,7 +542,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
         Palavra palavra = new Palavra();
         String secreta = palavra.sortear();
         
-        pnlPalavra.repaint();
+        pnlPalavra.repaint(); 
         
         // CRIA os edits das letras da palavra secreta
         for (int i = 0; i < secreta.length(); i++) {
