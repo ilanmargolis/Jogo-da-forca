@@ -20,7 +20,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Jogo da Forca - Vers&#xe3;o 0.1 - By Ilan Margolis &#xa9;2020"/>
+    <Property name="title" type="java.lang.String" value="Jogo da Forca - Vers&#xe3;o 0.2 - By Ilan Margolis &#xa9;2020"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -44,23 +44,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnlTeclado" alignment="1" pref="428" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pnlPalavra" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="pnlForca" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="pnlPalavra" max="32767" attributes="0"/>
+                          <Component id="pnlTeclado" pref="387" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-              <Component id="btnInicar" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="pnlForca" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,13 +64,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="pnlForca" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="pnlPalavra" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pnlTeclado" min="-2" pref="102" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnInicar" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Component id="pnlPalavra" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="pnlTeclado" min="-2" pref="150" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,15 +125,29 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblDica" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="lblDica" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblDica">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" "/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JLayeredPane" name="pnlTeclado">
       <Properties>
@@ -151,103 +159,128 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
                   <Component id="btnQ" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnW" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnE" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnR" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnT" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnY" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnU" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnI" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnO" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnP" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                  <Component id="btnA" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnS" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnD" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnF" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnG" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnH" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnJ" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnK" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnL" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                  <Component id="btnZ" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                  <Component id="btnX" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnC" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnV" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnB" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnN" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="btnM" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnA" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnS" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnD" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnF" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnG" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnH" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnJ" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnK" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnL" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnW" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnE" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnR" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnT" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnY" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnU" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnI" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnO" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnP" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Component id="btnZ" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnIniciar" min="-2" pref="201" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnX" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnC" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnV" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnB" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnN" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnM" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="108" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnQ" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnW" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnE" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnR" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnT" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnY" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnU" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnI" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnO" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnP" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnW" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnE" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnR" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnT" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnY" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnU" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnI" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnO" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnP" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnA" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnS" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnD" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnF" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnG" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnH" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnJ" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnK" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnL" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnA" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnS" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnD" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnF" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnG" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnH" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnJ" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnK" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnL" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnZ" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnX" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnC" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnV" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnB" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnN" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="btnZ" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnX" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnC" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnV" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnB" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnN" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="btnM" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnIniciar" min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -311,14 +344,6 @@
         <Component class="javax.swing.JButton" name="btnG">
           <Properties>
             <Property name="text" type="java.lang.String" value="G"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnQ">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Q"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnH">
@@ -386,15 +411,17 @@
             <Property name="text" type="java.lang.String" value="V"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="btnQ">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Q"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnIniciar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="INICIAR JOGO"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnInicar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="INICIAR O JOGO"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInicarActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>
