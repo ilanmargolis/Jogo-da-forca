@@ -449,7 +449,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     
-    // FUNÇÕES AUXILIARES        
+    // FUNÇÕES AUXILIARES         
     private void carregaImagemForca(int tipo) {
         imgForca.setIcon(new javax.swing.ImageIcon(getClass().
                          getResource("/imagens/forca" + tipo + ".png")));

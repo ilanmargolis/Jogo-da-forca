@@ -9,7 +9,7 @@ import java.util.Random;
  * @date   2020-05-04
  * 
  */
-public class Palavra {
+public class Palavra { 
     
     public String sortear() {
         final String temas[] = {"Abstrato", "Animal", "Comida",
