@@ -20,7 +20,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Jogo da Forca - Vers&#xe3;o 0.2 - By Ilan Margolis &#xa9;2020"/>
+    <Property name="title" type="java.lang.String" value="Jogo da Forca - Vers&#xe3;o 0.3 - By Ilan Margolis &#xa9;2020"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -52,7 +52,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="pnlPalavra" max="32767" attributes="0"/>
-                          <Component id="pnlTeclado" pref="387" max="32767" attributes="0"/>
+                          <Component id="pnlTeclado" pref="407" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -214,6 +214,8 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="btnIniciar" min="-2" pref="201" max="-2" attributes="0"/>
+                                  <EmptySpace pref="65" max="32767" attributes="0"/>
+                                  <Component id="chkSom" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="btnX" min="-2" max="-2" attributes="0"/>
@@ -229,7 +231,7 @@
                                   <Component id="btnM" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="108" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -279,8 +281,11 @@
                       <Component id="btnM" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnIniciar" min="-2" pref="28" max="-2" attributes="0"/>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnIniciar" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="chkSom" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -420,6 +425,15 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="INICIAR JOGO"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chkSom">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="som"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkSomActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
