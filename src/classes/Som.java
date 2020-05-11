@@ -25,7 +25,8 @@ public class Som extends Thread {
                 case TelaPrincipal.SOM_ERRO:    efeito = "erro"; break;
                 case TelaPrincipal.SOM_ACERTO:  efeito = "acerto"; break;
                 case TelaPrincipal.SOM_DERROTA: efeito = "derrota"; break;
-                case TelaPrincipal.SOM_VITORIA: efeito = "vitoria"; break;          
+                case TelaPrincipal.SOM_VITORIA: efeito = "vitoria"; break;   
+                case TelaPrincipal.SOM_TICTOC:     efeito = "tictoc"; break;
             }
            
             if (!efeito.equals("")) {
