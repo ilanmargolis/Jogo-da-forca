@@ -12,14 +12,13 @@ import java.util.TimerTask;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-
 /**
  *
  * @author Ilan Margolis
  * @date   2020-05-04
  * 
  */
-public class TelaPrincipal extends javax.swing.JDialog {
+public class Forca extends javax.swing.JDialog {
     // CONSTANTES
     private static final int EDT_LIMPA   = 0;
     private static final int EDT_MOSTRA  = 1;
@@ -44,7 +43,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
     /**
      * CRIAR novo formulário TelaPrincipal
      */
-    public TelaPrincipal(java.awt.Frame parent, boolean modal) {
+    public Forca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
                
@@ -414,20 +413,21 @@ public class TelaPrincipal extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Forca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Forca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Forca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Forca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaPrincipal dialog = new TelaPrincipal(new javax.swing.JFrame(), true);
+                Forca dialog = new Forca(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -584,7 +584,7 @@ public class TelaPrincipal extends javax.swing.JDialog {
         
         pnlTeclado.requestFocus();
         
-        // criar o temporizador
+        // criar o temporizador 2020-05-11
         tempo = new Timer();
         tempo.scheduleAtFixedRate(new TimerTask() {
             @Override    
@@ -593,8 +593,8 @@ public class TelaPrincipal extends javax.swing.JDialog {
                 
                 lblTempo.setText(String.valueOf(contador));
                 
-                // muda a cor do temporizador
-                if (contador == 5) {
+                // muda a cor do temporizador e som de tictic
+                if (contador <= 5) {
                     lblTempo.setForeground(Color.red);
                     geraSom(SOM_TICTOC);
                 }
@@ -727,5 +727,3 @@ public class TelaPrincipal extends javax.swing.JDialog {
         }
     }   
 }
-
-

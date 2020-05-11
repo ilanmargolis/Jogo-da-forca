@@ -10,7 +10,7 @@ import javazoom.jl.player.*;
  * @date   2020-05-07
  * 
  * @lib     http://www.javazoom.net/javalayer/sources.html
- * @efeitos https://www.soundjay.com  / https://toquesengracadosmp3.com
+ * @efeitos https://www.soundjay.com  / https://toquesengracadosmp3.com / https://www.findsounds.com/
  */
 public class Som extends Thread {
     private Player ply;   
@@ -21,12 +21,12 @@ public class Som extends Thread {
             String efeito = "";
             
             switch(tipo) {
-                case TelaPrincipal.SOM_INICIAR: efeito = "iniciar"; break;
-                case TelaPrincipal.SOM_ERRO:    efeito = "erro"; break;
-                case TelaPrincipal.SOM_ACERTO:  efeito = "acerto"; break;
-                case TelaPrincipal.SOM_DERROTA: efeito = "derrota"; break;
-                case TelaPrincipal.SOM_VITORIA: efeito = "vitoria"; break;   
-                case TelaPrincipal.SOM_TICTOC:     efeito = "tictoc"; break;
+                case Forca.SOM_INICIAR: efeito = "iniciar"; break;
+                case Forca.SOM_ERRO:    efeito = "erro"; break;
+                case Forca.SOM_ACERTO:  efeito = "acerto"; break;
+                case Forca.SOM_DERROTA: efeito = "derrota"; break;
+                case Forca.SOM_VITORIA: efeito = "vitoria"; break;   
+                case Forca.SOM_TICTOC:     efeito = "tictoc"; break;
             }
            
             if (!efeito.equals("")) {

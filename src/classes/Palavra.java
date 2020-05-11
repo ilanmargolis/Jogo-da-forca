@@ -67,11 +67,10 @@ public class Palavra {
                            "ESCOVA", "GARRAFA", "BOLOTA", "CARRETILHA",
                            "CARROCEL", "VESTIDO", "PETECA", "PATINETE",
                            "TELEFONE", "CHINELO", "PENEIRA", "MACHADO",
-                           "ARMADILHA", "AMBULANCIA", "CUTELO", "LAMPADA",
+                           "ARMADILHA", "CUTELO", "LAMPADA", "BACAMARTE",
                            "CADERNETA", "SANDALHA", "CAMISETA", "ESPINGARDA",
                            "SAPATILHA", "RAQUETE", "VASSOURA", "DICIONARIO",
-                           "VITROLA", "ZARABATANA", "MOEDOR", "CINZEIRO",
-                           "BACAMARTE"
+                           "VITROLA", "ZARABATANA", "MOEDOR", "CINZEIRO"
         };
         String pessoa[] = {"CONFEITEIRO", "MARINHEIRO", "ROTEIRISTA", "BANHISTA",
                            "REFUGIADO", "DEPUTADO", "PROGRAMADOR", "ALFAIATE",
@@ -86,7 +85,7 @@ public class Palavra {
         String veiculo[] = {"HELICOPTERO", "MOTOCICLETA", "SUBMARINO",
                             "ELEVADOR", "FOGUETE", "FERRARI", "BICICLETA",
                             "PATINETE", "TRANSATLANTICO", "CARRUAGEM", 
-                            "VOLANTE", "MOTORIZADO", "CARBURADOR", 
+                            "AMBULANCIA", "VOLANTE", "MOTORIZADO", "CARBURADOR", 
                             "RADIADOR", "ESTEPE", "PEDALEIRA", "TRAMBULADOR",
                             "AEROPLANO"
         };    
