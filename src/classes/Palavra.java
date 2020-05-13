@@ -40,7 +40,7 @@ public class Palavra {
                            "BOLINHO", "PASTEL", "BANANADA", "CREMOSO",
                            "CROCANTE", "ALCATRA", "MARMITA", "ESPESSANTE",
                            "ALIMENTO", "ABACAXI", "KIWI", "TOMATEIRO",
-                           "JAQUEIRA", "SARAPATEL", "FERMENTO"
+                           "JAQUEIRA", "SARAPATEL", "FERMENTO", "CANJICA"
         };
         String local[] = {"CASTELO", "PLANETA", "LANCHONETE", "CASSINO",
                           "CATACUMBA", "SATURNO", "PERNAMBUCO", "HOSPITAL", 
@@ -65,7 +65,7 @@ public class Palavra {
         };
         String objeto[] = {"CANETA", "BIJOUTERIA", "TELEVISOR", "RELOGIO",
                            "ESCOVA", "GARRAFA", "BOLOTA", "CARRETILHA",
-                           "CARROCEL", "VESTIDO", "PETECA", "PATINETE",
+                           "CARROCEL", "VESTIDO", "PETECA", "BALDE",
                            "TELEFONE", "CHINELO", "PENEIRA", "MACHADO",
                            "ARMADILHA", "CUTELO", "LAMPADA", "BACAMARTE",
                            "CADERNETA", "SANDALHA", "CAMISETA", "ESPINGARDA",
@@ -92,21 +92,21 @@ public class Palavra {
         
         Random rnd = new Random(); 
         
-        int tema = rnd.nextInt(temas.length - 1);
+        int tema = rnd.nextInt(temas.length);
 
         // sorteia a palavra do tema sorteado
         String palavra = "";
         
         switch (tema) {
-            case 0: palavra = abstrato[rnd.nextInt(abstrato.length - 1)]; break;
-            case 1: palavra = animal[rnd.nextInt(animal.length - 1)]; break;
-            case 2: palavra = comida[rnd.nextInt(comida.length - 1)]; break;
-            case 3: palavra = local[rnd.nextInt(local.length - 1)]; break;
-            case 4: palavra = mitologia[rnd.nextInt(mitologia.length - 1)]; break;
-            case 5: palavra = natureza[rnd.nextInt(natureza.length - 1)]; break;
-            case 6: palavra = objeto[rnd.nextInt(objeto.length -1)]; break;
-            case 7: palavra = pessoa[rnd.nextInt(pessoa.length -1)]; break;
-            case 8: palavra = veiculo[rnd.nextInt(veiculo.length -1)]; break;
+            case 0: palavra = abstrato[rnd.nextInt(abstrato.length)]; break;
+            case 1: palavra = animal[rnd.nextInt(animal.length)]; break;
+            case 2: palavra = comida[rnd.nextInt(comida.length)]; break;
+            case 3: palavra = local[rnd.nextInt(local.length)]; break;
+            case 4: palavra = mitologia[rnd.nextInt(mitologia.length)]; break;
+            case 5: palavra = natureza[rnd.nextInt(natureza.length)]; break;
+            case 6: palavra = objeto[rnd.nextInt(objeto.length)]; break;
+            case 7: palavra = pessoa[rnd.nextInt(pessoa.length)]; break;
+            case 8: palavra = veiculo[rnd.nextInt(veiculo.length)]; break;
         }
         
         // retorno a palavra e o tema para depois fazer um split

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JButton;
@@ -20,6 +21,8 @@ import javax.swing.JTextField;
  */
 public class Forca extends javax.swing.JDialog {
     // CONSTANTES
+    private static final String ARQUIVO_DADOS = "forca.dat";
+    
     private static final int EDT_LIMPA   = 0;
     private static final int EDT_MOSTRA  = 1;
     private static final int EDT_PROCURA = 2;
@@ -27,6 +30,14 @@ public class Forca extends javax.swing.JDialog {
     private static final int ST_DERROTA = -1;
     private static final int ST_JOGANDO = 0;
     private static final int ST_VITORIA = 1;
+    
+    private static final int TELA_INICIO    = 0;
+    private static final int TELA_ENFORCADO = 8;
+    private static final int TELA_LIVRE     = 9;
+    
+    protected static final int MAX_ERROS    = 8;
+    private static final int MAX_REGRESSIVO = 30;
+    private static final int MAX_RODADA     = 2;
     
     public static final int SOM_INICIAR = 0;
     public static final int SOM_ERRO    = 1;
@@ -36,20 +47,27 @@ public class Forca extends javax.swing.JDialog {
     public static final int SOM_TICTOC  = 5;
     
     // VARIÁVEIS
-    int contAcertos, contErros;
+    private int contAcertos, contErros;
     private Timer tempo;
-    int contador;
-    
+    private Pontuacao pontosJogo;  
+    private int contRegressivo, contRodada, totalPontos;    
+   
     /**
      * CRIAR novo formulário TelaPrincipal
      */
-    public Forca(java.awt.Frame parent, boolean modal) {
+    public Forca(java.awt.Frame parent, boolean modal) throws InterruptedException, IOException {
         super(parent, modal);
+        
+        this.contRegressivo = 0;
+        this.contRodada = 0;
+        this.totalPontos = 0;
+        this.pontosJogo = new Pontuacao(ARQUIVO_DADOS);
+
         initComponents();
                
-        configuraTeclado();    
-        
-        lblTempo.setVisible(false);
+        configurarJogo();   
+                
+        pnlScore.setVisible(false);
     }
 
     /**
@@ -64,7 +82,13 @@ public class Forca extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         pnlForca = new javax.swing.JPanel();
         imgForca = new javax.swing.JLabel();
+        pnlScore = new javax.swing.JPanel();
+        lblRodada = new javax.swing.JLabel();
+        lblRodadaCont = new javax.swing.JLabel();
+        lblPontos = new javax.swing.JLabel();
+        lblPontosCont = new javax.swing.JLabel();
         lblTempo = new javax.swing.JLabel();
+        lblTempoCont = new javax.swing.JLabel();
         pnlPalavra = new javax.swing.JPanel();
         lblDica = new javax.swing.JLabel();
         pnlTeclado = new javax.swing.JLayeredPane();
@@ -109,7 +133,7 @@ public class Forca extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Jogo da Forca - Versão 0.4 - By Ilan Margolis ©2020");
+        setTitle("Jogo da Forca - Versão 0.5 - By Ilan Margolis ©2020");
         setResizable(false);
 
         pnlForca.setRequestFocusEnabled(false);
@@ -123,12 +147,75 @@ public class Forca extends javax.swing.JDialog {
         imgForca.setPreferredSize(new java.awt.Dimension(68, 73));
         pnlForca.add(imgForca, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 348, 373));
 
-        lblTempo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        lblTempo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTempo.setText("30");
-        lblTempo.setToolTipText("");
-        lblTempo.setRequestFocusEnabled(false);
-        pnlForca.add(lblTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 102, 30, -1));
+        pnlScore.setEnabled(false);
+
+        lblRodada.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblRodada.setText("Rodada:");
+
+        lblRodadaCont.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblRodadaCont.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRodadaCont.setText("0");
+
+        lblPontos.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblPontos.setText("Pontos:");
+
+        lblPontosCont.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblPontosCont.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPontosCont.setText("0");
+
+        lblTempo.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblTempo.setText("Tempo:");
+
+        lblTempoCont.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        lblTempoCont.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTempoCont.setText("30");
+        lblTempoCont.setToolTipText("");
+        lblTempoCont.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout pnlScoreLayout = new javax.swing.GroupLayout(pnlScore);
+        pnlScore.setLayout(pnlScoreLayout);
+        pnlScoreLayout.setHorizontalGroup(
+            pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+            .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlScoreLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlScoreLayout.createSequentialGroup()
+                            .addComponent(lblRodada)
+                            .addGap(5, 5, 5)
+                            .addComponent(lblRodadaCont, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlScoreLayout.createSequentialGroup()
+                            .addComponent(lblPontos)
+                            .addGap(8, 8, 8)
+                            .addComponent(lblPontosCont, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlScoreLayout.createSequentialGroup()
+                            .addComponent(lblTempo)
+                            .addGap(11, 11, 11)
+                            .addComponent(lblTempoCont, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        pnlScoreLayout.setVerticalGroup(
+            pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlScoreLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblRodada)
+                        .addComponent(lblRodadaCont))
+                    .addGap(4, 4, 4)
+                    .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblPontos)
+                        .addComponent(lblPontosCont))
+                    .addGap(4, 4, 4)
+                    .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTempo)
+                        .addComponent(lblTempoCont))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pnlForca.add(pnlScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 130, 80));
 
         pnlPalavra.setEnabled(false);
         pnlPalavra.setFocusable(false);
@@ -157,58 +244,84 @@ public class Forca extends javax.swing.JDialog {
         pnlTeclado.setPreferredSize(new java.awt.Dimension(366, 130));
 
         btnI.setText("I");
+        btnI.setFocusable(false);
 
         btnE.setText("E");
+        btnE.setFocusable(false);
 
         btnL.setText("L");
+        btnL.setFocusable(false);
 
         btnR.setText("R");
+        btnR.setFocusable(false);
 
         btnW.setText("W");
+        btnW.setFocusable(false);
 
         btnO.setText("O");
+        btnO.setFocusable(false);
 
         btnP.setText("P");
+        btnP.setFocusable(false);
 
         btnA.setText("A");
+        btnA.setFocusable(false);
 
         btnS.setText("S");
+        btnS.setFocusable(false);
 
         btnD.setText("D");
+        btnD.setFocusable(false);
 
         btnF.setText("F");
+        btnF.setFocusable(false);
 
         btnG.setText("G");
+        btnG.setFocusable(false);
 
         btnH.setText("H");
+        btnH.setFocusable(false);
 
         btnJ.setText("J");
+        btnJ.setFocusable(false);
 
         btnK.setText("K");
+        btnK.setFocusable(false);
 
         btnT.setText("T");
+        btnT.setFocusable(false);
 
         btnY.setText("Y");
+        btnY.setFocusable(false);
 
         btnU.setText("U");
+        btnU.setFocusable(false);
 
         btnZ.setText("Z");
+        btnZ.setFocusable(false);
 
         btnB.setText("B");
+        btnB.setFocusable(false);
 
         btnN.setText("N");
+        btnN.setFocusable(false);
 
         btnM.setText("M");
+        btnM.setFocusable(false);
 
         btnX.setText("X");
+        btnX.setFocusable(false);
 
         btnC.setText("C");
+        btnC.setFocusable(false);
 
         btnV.setText("V");
+        btnV.setFocusable(false);
 
         btnQ.setText("Q");
+        btnQ.setFocusable(false);
 
-        btnIniciar.setText("INICIAR JOGO");
+        btnIniciar.setText("INICIAR PARTIDA");
 
         chkSom.setSelected(true);
         chkSom.setText("som");
@@ -428,6 +541,7 @@ public class Forca extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Forca dialog = new Forca(new javax.swing.JFrame(), true);
+                
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -475,9 +589,15 @@ public class Forca extends javax.swing.JDialog {
     private javax.swing.JLabel imgForca;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDica;
+    private javax.swing.JLabel lblPontos;
+    private javax.swing.JLabel lblPontosCont;
+    private javax.swing.JLabel lblRodada;
+    private javax.swing.JLabel lblRodadaCont;
     private javax.swing.JLabel lblTempo;
+    private javax.swing.JLabel lblTempoCont;
     private javax.swing.JPanel pnlForca;
     private javax.swing.JPanel pnlPalavra;
+    private javax.swing.JPanel pnlScore;
     private javax.swing.JLayeredPane pnlTeclado;
     // End of variables declaration//GEN-END:variables
 
@@ -488,7 +608,7 @@ public class Forca extends javax.swing.JDialog {
                          getResource("/imagens/forca" + tipo + ".png")));
     }
     
-    private void configuraTeclado() { // escutador das teclas alfabéticas
+    private void configurarJogo() throws InterruptedException { // escutador das teclas alfabéticas
         // VERIFICA se a letra já foi utilizada
         ActionListener al = new ActionListener() {
             @Override
@@ -557,53 +677,81 @@ public class Forca extends javax.swing.JDialog {
         }
     }
 
+    private void criaTimer() {
+        // criar o temporizador 2020-05-11
+        tempo = new Timer();
+        tempo.scheduleAtFixedRate(new TimerTask() {
+            @Override    
+            public void run() {
+                if (contRegressivo > 0) {
+                    contRegressivo--;
+
+                    lblTempoCont.setText(String.valueOf(contRegressivo));
+
+                    // muda a cor do temporizador e som de tictic
+                    if (contRegressivo <= 5) {
+                        lblTempoCont.setForeground(Color.red);
+                        geraSom(SOM_TICTOC);
+                    }
+
+                    jogada("");
+                }
+            }
+        }, 1000, 1000); // 1000ms = 1s
+    }
+
     private void geraSom(int tipo) {
         if (chkSom.isSelected()) {
             Som efeito = new Som();
             efeito.start(tipo);                    
         }
     }
-    
+        
     private void inicializaJogo() { // inicializa a interface do jogo
+        // inicializa variáveis
         contAcertos = contErros = 0;
-        contador = 30;
+        contRegressivo = MAX_REGRESSIVO;
+        
+        contRodada++;        
          
+        // configura componentes
+        pnlScore.setVisible(true);
+        btnIniciar.setEnabled(false);
+                
+        lblRodadaCont.setText(String.valueOf(contRodada));
+        
+        lblTempoCont.setVisible(true);
+        lblTempoCont.setForeground(Color.black);
+        lblTempoCont.setText(String.valueOf(contRegressivo));
+        
+        pnlTeclado.requestFocus();
+
+        // chama métodos específicos
+        inicializaTela(false);
+        
+        criaEditsLetras();
+                        
+        criaTimer();
+        
+        geraSom(SOM_INICIAR);        
+    }
+
+    private void inicializaTela(boolean flagTotal) { 
+
+        if (flagTotal) { // inicializa a tela pra começar nova partida
+            totalPontos = contRodada = 0;
+
+            lblPontosCont.setText(String.valueOf(totalPontos));
+            btnIniciar.setText("INICIAR PARTIDA");
+            pnlScore.setVisible(false);
+            lblDica.setText(" ");
+        }
+               
         pintaEditLetras(EDT_LIMPA, null);  
         
         pintaLetraTeclado("", Color.LIGHT_GRAY);
         
-        carregaImagemForca(0);
-        
-        criaEditsLetras();
-        
-        btnIniciar.setEnabled(false);
-                
-        lblTempo.setVisible(true);
-        lblTempo.setForeground(Color.black);
-        lblTempo.setText(String.valueOf(contador));
-        
-        pnlTeclado.requestFocus();
-        
-        // criar o temporizador 2020-05-11
-        tempo = new Timer();
-        tempo.scheduleAtFixedRate(new TimerTask() {
-            @Override    
-            public void run() {
-                contador--;
-                
-                lblTempo.setText(String.valueOf(contador));
-                
-                // muda a cor do temporizador e som de tictic
-                if (contador <= 5) {
-                    lblTempo.setForeground(Color.red);
-                    geraSom(SOM_TICTOC);
-                }
-                
-                jogada("");
-            }
-        }, 1000, 1000); // 1000ms = 1s
-        
-        geraSom(SOM_INICIAR);        
+        carregaImagemForca(TELA_INICIO);
     }
 
     private boolean isLetraUsada(String letra) { // verifica se a letra já foi teclada
@@ -626,7 +774,7 @@ public class Forca extends javax.swing.JDialog {
         return retorno;
     }
  
-    private void jogada(String letra) {
+    private void jogada(String letra) throws IOException {
         int status = ST_JOGANDO;
 
         if (pnlPalavra.getComponents().length > 0) { // só ativa teclado caso a palavra tenha sido sorteada
@@ -653,13 +801,17 @@ public class Forca extends javax.swing.JDialog {
             // VITÓRIA / DERROTA
             if (contAcertos == pnlPalavra.getComponents().length - 1) { // vitória (edits - lblDica)
                 if (contErros > 0) { // liberta o boneco se tiver iniciado o enforcamento
-                    carregaImagemForca(9);  
+                    carregaImagemForca(TELA_LIVRE);  
                 }
 
                 status = ST_VITORIA;
                 
                 geraSom(SOM_VITORIA);
-            } else if ((contErros == 8) || (contador == 0)) { // derrota por erros ou tempo
+            } else if ((contErros == MAX_ERROS) || (contRegressivo == 0)) { // derrota por erros ou tempo
+                if (contRegressivo == 0) {
+                    carregaImagemForca(TELA_ENFORCADO);
+                }
+                
                 pintaEditLetras(EDT_MOSTRA, null);  // mostra as letras que faltam na palavra
 
                 status = ST_DERROTA;
@@ -668,9 +820,26 @@ public class Forca extends javax.swing.JDialog {
             }
         }
 
+        int pontosPartida = pontosJogo.pontos(contAcertos, contErros, contRegressivo);
+        
         if (status != ST_JOGANDO) {
+            totalPontos += pontosPartida;
+            lblPontosCont.setText(String.valueOf(totalPontos));
+            
             tempo.cancel();
+            
+            // verifica se já finalizou o partida
+            if (contRodada < MAX_RODADA) {
+                btnIniciar.setText("RODADA " + (contRodada + 1));
+            } else {
+                pontosJogo.verifica(totalPontos);
+                                
+                inicializaTela(true);
+            }
+
             btnIniciar.setEnabled(true);
+        } else {
+            lblPontosCont.setText(String.valueOf(totalPontos + pontosPartida));
         }
     }
 
@@ -683,6 +852,7 @@ public class Forca extends javax.swing.JDialog {
                     case EDT_LIMPA:
                         // DESTROI Edits existentes
                         pnlPalavra.remove((JTextField) c);
+                        pnlPalavra.repaint(); 
                         break;
                     case EDT_MOSTRA:
                         // MOSTRA letras que faltavam
