@@ -5,6 +5,9 @@
  */
 package classes;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,8 +15,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -43,7 +50,7 @@ public class Pontuacao {
         // só gravo até 10 itens do top10
         if (this.top10.size() > 0) {
             for (int i = 0; (i < 10) && (i < this.top10.size()); i++) {
-                gravarArq.append(top10.get(i) + "\n");
+                gravarArq.append(encode(top10.get(i)) + "\n");
             }
         }
 
@@ -62,7 +69,7 @@ public class Pontuacao {
                     break;
                 }
                 
-                this.top10.add(linha);
+                this.top10.add(decode(linha));
             }
                         
             lerArq.close(); 
@@ -81,14 +88,46 @@ public class Pontuacao {
         
         return pontos;
     }
+        
+    private void ranking(int atual) {
+        // crio a janela em tempo de execução
+        JDialog d = new JDialog();
+        d.setTitle("Os 10 melhores");
+        d.setSize(240, 277); // tamanho da janela
+        d.setLocationRelativeTo(null); // centraliza
+        d.setModal(true); // janela passa a ser modal
+        d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // ao fechar destroi a janela
+
+        JPanel p = new JPanel();
+        p.setLayout(new FlowLayout(FlowLayout.LEFT)); // se não couber na linha, passa para outra
+        d.add(p); // adiciona o panel na janela
+        
+        int x = 1;
+        
+        for(String i: this.top10) {
+            String rank[] = i.split(",");
+            JLabel l = new JLabel(rank[1] + ".".repeat(20 - rank[1].length()) + rank[0]);
+            l.setFont(new Font("Courier 10 Pitch", Font.BOLD, 16)); // font com espaçamento constante
+            
+            if ((atual > 0) && (atual == x)) { // destaca a posição alcançada pelo jogador
+                l.setForeground(Color.red);
+            }
+            
+            p.add(l); // adiciona o label no panel
+            
+            x++;
+        }
+         
+        d.setVisible(true); // mostra a janela
+    }    
     
     protected void verifica(int pontos) throws IOException {
         // verificar se tem pontos para ficar entre os 10 primeiros
         boolean flagRank = (this.top10.size() == 0);
         for(String i: this.top10) {
             String rank[] = i.split(",");
-            
-            if (pontos > Integer.parseInt(rank[0])) {
+                       
+            if ((pontos > Integer.parseInt(rank[0])) || (this.top10.size() <= 10)) {
                 flagRank = true;
                 break;
             }
@@ -108,9 +147,22 @@ public class Pontuacao {
                 Collections.reverse(top10);
 
                 this.gravar();
+                
+                // mostra os 10 melhores com a posição do jogador
+                ranking(this.top10.indexOf(jogador) + 1);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Você não é top10");
-        }
+        } 
     }    
+    
+    // funções auxiliares 2020-05-14
+    /** Criptografando */
+    private static String encode(String texto) {
+        return new String(Base64.getEncoder().encode(texto.getBytes()));
+    }
+    
+    /** Descriptografando */
+    private static String decode(String texto) {
+        return new String(Base64.getDecoder().decode(texto.getBytes()));
+    }        
+    
 }
