@@ -8,6 +8,8 @@ package classes;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -98,6 +100,15 @@ public class Pontuacao {
         d.setModal(true); // janela passa a ser modal
         d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // ao fechar destroi a janela
 
+        // caso o usuário clique em ESC, fechar a janela ranking
+        d.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    d.dispose();
+                }
+            }
+        });    
+        
         JPanel p = new JPanel();
         p.setLayout(new FlowLayout(FlowLayout.LEFT)); // se não couber na linha, passa para outra
         d.add(p); // adiciona o panel na janela

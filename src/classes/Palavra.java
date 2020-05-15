@@ -1,7 +1,5 @@
 package classes;
 
-import java.util.Random;
-
 /**
  *
  * @author Ilan Margolis
@@ -90,23 +88,21 @@ public class Palavra {
                             "AEROPLANO"
         };    
         
-        Random rnd = new Random(); 
-        
-        int tema = rnd.nextInt(temas.length);
+        int tema = SecureRNG.getInt(temas.length);
 
         // sorteia a palavra do tema sorteado
         String palavra = "";
         
         switch (tema) {
-            case 0: palavra = abstrato[rnd.nextInt(abstrato.length)]; break;
-            case 1: palavra = animal[rnd.nextInt(animal.length)]; break;
-            case 2: palavra = comida[rnd.nextInt(comida.length)]; break;
-            case 3: palavra = local[rnd.nextInt(local.length)]; break;
-            case 4: palavra = mitologia[rnd.nextInt(mitologia.length)]; break;
-            case 5: palavra = natureza[rnd.nextInt(natureza.length)]; break;
-            case 6: palavra = objeto[rnd.nextInt(objeto.length)]; break;
-            case 7: palavra = pessoa[rnd.nextInt(pessoa.length)]; break;
-            case 8: palavra = veiculo[rnd.nextInt(veiculo.length)]; break;
+            case 0: palavra = abstrato[SecureRNG.getInt(abstrato.length)]; break;
+            case 1: palavra = animal[SecureRNG.getInt(animal.length)]; break;
+            case 2: palavra = comida[SecureRNG.getInt(comida.length)]; break;
+            case 3: palavra = local[SecureRNG.getInt(local.length)]; break;
+            case 4: palavra = mitologia[SecureRNG.getInt(mitologia.length)]; break;
+            case 5: palavra = natureza[SecureRNG.getInt(natureza.length)]; break;
+            case 6: palavra = objeto[SecureRNG.getInt(objeto.length)]; break;
+            case 7: palavra = pessoa[SecureRNG.getInt(pessoa.length)]; break;
+            case 8: palavra = veiculo[SecureRNG.getInt(veiculo.length)]; break;
         }
         
         // retorno a palavra e o tema para depois fazer um split

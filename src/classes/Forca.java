@@ -133,7 +133,7 @@ public class Forca extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Jogo da Forca - Versão 0.6 - By Ilan Margolis ©2020");
+        setTitle("Jogo da Forca - Versão 0.7 - By Ilan Margolis ©2020");
         setResizable(false);
 
         pnlForca.setRequestFocusEnabled(false);
@@ -665,7 +665,7 @@ public class Forca extends javax.swing.JDialog {
         for (int i = 0; i < texto[0].length(); i++) {
             String nome = "Letra" + Integer.toString(i);
             JTextField letra = new JTextField(nome);
-            letra.setBounds(30 * i, 15, 30, 34);
+            letra.setBounds(29 * i, 15, 29, 34);
             letra.setFocusable(false); // evita que clique e apareça a letra com seleção
             letra.setFont(new Font("dialog", Font.BOLD, 17));
             letra.setForeground(Color.white); // esconde a letra

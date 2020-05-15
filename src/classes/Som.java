@@ -11,6 +11,7 @@ import javazoom.jl.player.*;
  * 
  * @lib     http://www.javazoom.net/javalayer/sources.html
  * @efeitos https://www.soundjay.com  / https://toquesengracadosmp3.com / https://www.findsounds.com/
+ * 
  */
 public class Som extends Thread {
     private Player ply;   
