@@ -51,8 +51,12 @@ public class Pontuacao {
 
         // só gravo até 10 itens do top10
         if (this.top10.size() > 0) {
-            for (int i = 0; (i < 10) && (i < this.top10.size()); i++) {
-                gravarArq.append(encode(top10.get(i)) + "\n");
+            for (int i = 0; (i < this.top10.size()); i++) {
+                if (i < 10) {
+                    gravarArq.append(encode(top10.get(i)) + "\n");
+                } else { // remove item maior que 10 melhores
+                    top10.remove(i);
+                }
             }
         }
 
@@ -97,6 +101,7 @@ public class Pontuacao {
         d.setTitle("Os 10 melhores");
         d.setSize(240, 277); // tamanho da janela
         d.setLocationRelativeTo(null); // centraliza
+        d.setLocation(d.getX(), d.getY() - 35); // posiciona janela acima da palavra secreta
         d.setModal(true); // janela passa a ser modal
         d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // ao fechar destroi a janela
 
@@ -117,7 +122,8 @@ public class Pontuacao {
         
         for(String i: this.top10) {
             String rank[] = i.split(",");
-            JLabel l = new JLabel(rank[1] + ".".repeat(20 - rank[1].length()) + rank[0]);
+            String pontos = String.valueOf(Integer.parseInt(rank[0])); // retira o zero da frente do ponto
+            JLabel l = new JLabel(rank[1] + ".".repeat(23 - rank[1].length() - pontos.length()) + pontos);
             l.setFont(new Font("Courier 10 Pitch", Font.BOLD, 16)); // font com espaçamento constante
             
             if ((atual > 0) && (atual == x)) { // destaca a posição alcançada pelo jogador
@@ -138,7 +144,7 @@ public class Pontuacao {
         for(String i: this.top10) {
             String rank[] = i.split(",");
                        
-            if ((pontos > Integer.parseInt(rank[0])) || (this.top10.size() <= 10)) {
+            if ((pontos > Integer.parseInt(rank[0])) || (this.top10.size() < 10)) {
                 flagRank = true;
                 break;
             }
@@ -162,7 +168,9 @@ public class Pontuacao {
                 // mostra os 10 melhores com a posição do jogador
                 ranking(this.top10.indexOf(jogador) + 1);
             }
-        } 
+        } else { // apenas mostra os 10 melhores
+            ranking(0);
+        }
     }    
     
     // funções auxiliares 2020-05-14

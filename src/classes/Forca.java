@@ -133,7 +133,7 @@ public class Forca extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Jogo da Forca - Versão 0.7 - By Ilan Margolis ©2020");
+        setTitle("Jogo da Forca - Versão 0.8 - By Ilan Margolis ©2020");
         setResizable(false);
 
         pnlForca.setRequestFocusEnabled(false);
@@ -719,7 +719,7 @@ public class Forca extends javax.swing.JDialog {
         pnlScore.setVisible(true);
         btnIniciar.setEnabled(false);
                 
-        lblRodadaCont.setText(String.valueOf(contRodada));
+        lblRodadaCont.setText(String.valueOf(contRodada) + "/" + String.valueOf(MAX_RODADA));
         
         lblTempoCont.setVisible(true);
         lblTempoCont.setForeground(Color.black);
@@ -817,10 +817,11 @@ public class Forca extends javax.swing.JDialog {
 
                 status = ST_DERROTA;
                 
-                geraSom(SOM_DERROTA);                
+                geraSom(SOM_DERROTA);       
             }
         }
 
+        // contabiliza os pontos a cada tentativa
         int pontosPartida = pontosJogo.pontos(contAcertos, contErros, contRegressivo);
         
         if (status != ST_JOGANDO) {
@@ -834,7 +835,7 @@ public class Forca extends javax.swing.JDialog {
                 btnIniciar.setText("RODADA " + (contRodada + 1));
             } else {
                 pontosJogo.verifica(totalPontos);
-                                
+                
                 inicializaTela(true);
             }
 
@@ -896,5 +897,9 @@ public class Forca extends javax.swing.JDialog {
                 }
             }
         }
-    }   
+    }  
+    
+    private void sleep(int tempo) { // tempo em milisegundos
+        try { Thread.sleep (tempo); } catch (InterruptedException ex) {} 
+    }
 }

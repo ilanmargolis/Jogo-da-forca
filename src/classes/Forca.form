@@ -20,7 +20,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Jogo da Forca - Vers&#xe3;o 0.7 - By Ilan Margolis &#xa9;2020"/>
+    <Property name="title" type="java.lang.String" value="Jogo da Forca - Vers&#xe3;o 0.8 - By Ilan Margolis &#xa9;2020"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
