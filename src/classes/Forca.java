@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -133,7 +135,7 @@ public class Forca extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Jogo da Forca - Versão 0.8 - By Ilan Margolis ©2020");
+        setTitle("Jogo da Forca - Versão 0.9 - By Ilan Margolis ©2020");
         setResizable(false);
 
         pnlForca.setRequestFocusEnabled(false);
@@ -540,18 +542,24 @@ public class Forca extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Forca dialog = new Forca(new javax.swing.JFrame(), true);
+                try {
+                    Forca dialog = new Forca(new javax.swing.JFrame(), true);
                 
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                                 
-                dialog.setLocationRelativeTo(null); // centraliza formulário na tela
-                dialog.setSize(440, 600); // fixa o tamanho do formulário
-                dialog.setVisible(true);  // torna o fomulário visível              
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+
+                    dialog.setLocationRelativeTo(null); // centraliza formulário na tela
+                    dialog.setSize(440, 600); // fixa o tamanho do formulário
+                    dialog.setVisible(true);  // torna o fomulário visível              
+                } catch (IOException ex) {
+                    Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -620,7 +628,11 @@ public class Forca extends javax.swing.JDialog {
                         inicializaJogo();
                     }
                 } else {
-                    jogada(letra);
+                    try {
+                        jogada(letra);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         };
@@ -645,8 +657,12 @@ public class Forca extends javax.swing.JDialog {
                 } else {
                     String letra = String.valueOf(e.getKeyChar()).toUpperCase();
                     
-                    if (letra.matches("[A-Z]*")) { // aceita apenas letras
+                    if (letra.matches("[A-Z]*")) { try {
+                        // aceita apenas letras
                         jogada(letra);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
@@ -695,7 +711,11 @@ public class Forca extends javax.swing.JDialog {
                         geraSom(SOM_TICTOC);
                     }
 
-                    jogada("");
+                    try {
+                        jogada("");
+                    } catch (IOException ex) {
+                        Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }, 1000, 1000); // 1000ms = 1s

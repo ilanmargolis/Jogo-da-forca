@@ -35,7 +35,7 @@ public class Pontuacao {
     private String arquivo = "";
 
     Pontuacao(String arquivo) throws IOException {
-        this.arquivo = arquivo;
+        this.arquivo = (new File (".")).getCanonicalPath() + "/" + arquivo;
         
         this.ler();               
     }
@@ -60,7 +60,7 @@ public class Pontuacao {
             }
         }
 
-        gravarArq.close();        
+        gravarArq.close();   
     }
     
     protected void ler() throws IOException {
