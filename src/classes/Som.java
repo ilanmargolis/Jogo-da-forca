@@ -17,6 +17,10 @@ public class Som extends Thread {
     private Player ply;   
     int tipo = -1;
     
+    /**
+     *
+     */
+    @Override
     public void run() {
         try {
             String efeito = "";
@@ -38,7 +42,7 @@ public class Som extends Thread {
                 ply.play();
             }
         } catch (JavaLayerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
     

@@ -30,11 +30,12 @@ import javax.swing.JPanel;
  * @date   2020-05-12
  * 
  */
-public class Pontuacao {
-    private static ArrayList<String> top10 = new ArrayList<String>();
+public final class Pontuacao {
+    private final ArrayList<String> top10;
     private String arquivo = "";
 
     Pontuacao(String arquivo) throws IOException {
+        this.top10 = new ArrayList<>();
         this.arquivo = (new File (".")).getCanonicalPath() + "/" + arquivo;
         
         this.ler();               
@@ -47,38 +48,40 @@ public class Pontuacao {
             arq.delete();
         }
         
-        BufferedWriter gravarArq = new BufferedWriter(new FileWriter(this.arquivo));
-
         // só gravo até 10 itens do top10
-        if (this.top10.size() > 0) {
-            for (int i = 0; (i < this.top10.size()); i++) {
-                if (i < 10) {
-                    gravarArq.append(encode(top10.get(i)) + "\n");
-                } else { // remove item maior que 10 melhores
-                    top10.remove(i);
+        try 
+            (BufferedWriter gravarArq = new BufferedWriter(new FileWriter(this.arquivo))) 
+        {
+            // só gravo até 10 itens do top10
+            if (this.top10.size() > 0) {
+                for (int i = 0; (i < this.top10.size()); i++) {
+                    if (i < 10) {
+                        gravarArq.append(encode(top10.get(i)) + "\n");
+                    } else { // remove item maior que 10 melhores
+                        top10.remove(i);
+                    }
                 }
             }
         }
-
-        gravarArq.close();   
     }
     
     protected void ler() throws IOException {
         if ((new File(this.arquivo).exists())) {
-            BufferedReader lerArq = new BufferedReader(new FileReader(this.arquivo));
-            String linha = "";
-            
-            while (true) {
-                linha = lerArq.readLine();
-
-                if (linha == null) {
-                    break;
-                }
+            try 
+                (BufferedReader lerArq = new BufferedReader(new FileReader(this.arquivo)))
+            {
+                String linha;
                 
-                this.top10.add(decode(linha));
+                while (true) {
+                    linha = lerArq.readLine();
+                    
+                    if (linha == null) {
+                        break;
+                    }
+                    
+                    this.top10.add(decode(linha));
+                }
             }
-                        
-            lerArq.close(); 
         }
     }    
     
@@ -107,6 +110,7 @@ public class Pontuacao {
 
         // caso o usuário clique em ESC, fechar a janela ranking
         d.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     d.dispose();
@@ -140,7 +144,7 @@ public class Pontuacao {
     
     protected void verifica(int pontos) throws IOException {
         // verificar se tem pontos para ficar entre os 10 primeiros
-        boolean flagRank = (this.top10.size() == 0);
+        boolean flagRank = (this.top10.isEmpty());
         for(String i: this.top10) {
             String rank[] = i.split(",");
                        
@@ -183,5 +187,4 @@ public class Pontuacao {
     private static String decode(String texto) {
         return new String(Base64.getDecoder().decode(texto.getBytes()));
     }        
-    
 }

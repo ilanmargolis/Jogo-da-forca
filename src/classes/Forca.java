@@ -39,7 +39,7 @@ public class Forca extends javax.swing.JDialog {
     
     protected static final int MAX_ERROS    = 8;
     private static final int MAX_REGRESSIVO = 30;
-    private static final int MAX_RODADA     = 2;
+    private static final int MAX_RODADA     = 3;
     
     public static final int SOM_INICIAR = 0;
     public static final int SOM_ERRO    = 1;
@@ -50,20 +50,28 @@ public class Forca extends javax.swing.JDialog {
     
     // VARIÁVEIS
     private int contAcertos, contErros;
-    private Timer tempo;
-    private Pontuacao pontosJogo;  
     private int contRegressivo, contRodada, totalPontos;    
+    private Timer tempo;
+    
+    // OBJETOS
+    private final Pontuacao pontosJogo;  
+    private final Palavra palavra;
    
     /**
      * CRIAR novo formulário TelaPrincipal
+     * @param parent
+     * @param modal
+     * @throws java.lang.InterruptedException
+     * @throws java.io.IOException
      */
     public Forca(java.awt.Frame parent, boolean modal) throws InterruptedException, IOException {
         super(parent, modal);
+        this.pontosJogo = new Pontuacao(ARQUIVO_DADOS);
+        this.palavra = new Palavra();
         
         this.contRegressivo = 0;
         this.contRodada = 0;
         this.totalPontos = 0;
-        this.pontosJogo = new Pontuacao(ARQUIVO_DADOS);
 
         initComponents();
                
@@ -135,7 +143,7 @@ public class Forca extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Jogo da Forca - Versão 0.9 - By Ilan Margolis ©2020");
+        setTitle("Jogo da Forca - Versão 0.91 - By Ilan Margolis ©2020");
         setResizable(false);
 
         pnlForca.setRequestFocusEnabled(false);
@@ -541,6 +549,7 @@ public class Forca extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     Forca dialog = new Forca(new javax.swing.JFrame(), true);
@@ -555,9 +564,7 @@ public class Forca extends javax.swing.JDialog {
                     dialog.setLocationRelativeTo(null); // centraliza formulário na tela
                     dialog.setSize(440, 600); // fixa o tamanho do formulário
                     dialog.setVisible(true);  // torna o fomulário visível              
-                } catch (IOException ex) {
-                    Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
+                } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Forca.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -649,6 +656,7 @@ public class Forca extends javax.swing.JDialog {
         
         // aguardo alguma tecla ser digitada
         pnlTeclado.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 if (btnIniciar.isEnabled()) {
                     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -670,7 +678,6 @@ public class Forca extends javax.swing.JDialog {
     }       
     
     private void criaEditsLetras() { // sorteia a palavra e prepara edits para as letras
-        Palavra palavra = new Palavra();
         String secreta = palavra.sortear();
         String texto[] = secreta.split(";");
         
@@ -685,7 +692,7 @@ public class Forca extends javax.swing.JDialog {
             letra.setFocusable(false); // evita que clique e apareça a letra com seleção
             letra.setFont(new Font("dialog", Font.BOLD, 17));
             letra.setForeground(Color.white); // esconde a letra
-            letra.setHorizontalAlignment(letra.CENTER);
+            letra.setHorizontalAlignment(JTextField.CENTER);
             letra.setText(texto[0].substring(i, i + 1));
             
             pnlPalavra.add(letra);
@@ -799,12 +806,8 @@ public class Forca extends javax.swing.JDialog {
         int status = ST_JOGANDO;
 
         if (pnlPalavra.getComponents().length > 0) { // só ativa teclado caso a palavra tenha sido sorteada
-            //Som efeito = new Som();
-
             if (!isLetraUsada(letra)) {
-                boolean flagAcertouLetra = false;
-
-                flagAcertouLetra = pintaEditLetras(EDT_PROCURA, letra);
+                boolean flagAcertouLetra = pintaEditLetras(EDT_PROCURA, letra);
 
                 if (!flagAcertouLetra) {
                     pintaLetraTeclado(letra, Color.red);

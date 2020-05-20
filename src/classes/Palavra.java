@@ -7,7 +7,9 @@ package classes;
  * 
  */
 public class Palavra { 
-    
+    private int temaSorteado = -1;
+    private int tema;
+
     public String sortear() {
         final String temas[] = {"Abstrato", "Animal", "Comida",
                                 "Local", "Mitologia", "Natureza", 
@@ -88,8 +90,13 @@ public class Palavra {
                             "AEROPLANO"
         };    
         
-        int tema = SecureRNG.getInt(temas.length);
+        // evita que o mesmo tema seja sorteado consecutivamente
+        do {
+            tema = SecureRNG.getInt(temas.length);
+        } while (tema == temaSorteado);
 
+        this.temaSorteado = tema;
+        
         // sorteia a palavra do tema sorteado
         String palavra = "";
         
